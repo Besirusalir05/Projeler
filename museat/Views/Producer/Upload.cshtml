@@ -1,0 +1,25 @@
+﻿@model museat.Models.Beat
+
+<div class="container mt-5">
+    <h2>Yeni Beat Yükle</h2>
+    <hr />
+    <form asp-action="Upload" enctype="multipart/form-data" method="post">
+        <div class="mb-3">
+            <label>Beat Adı</label>
+            <input asp-for="Name" class="form-control" placeholder="Örn: Dark Night Trap" />
+        </div>
+        <div class="mb-3">
+            <label>Tür (Genre)</label>
+            <input asp-for="Genre" class="form-control" placeholder="Örn: Drill, Lo-fi" />
+        </div>
+        <div class="mb-3">
+            <label>Fiyat (₺)</label>
+            <input asp-for="Price" type="number" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label>Müzik Dosyası (MP3/WAV)</label>
+            <input type="file" name="audioFile" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Sisteme Yükle</button>
+    </form>
+</div>

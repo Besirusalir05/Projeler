@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="rounded-circle d-flex align-items-center justify-content-center shadow-sm"
+                     style="width: 38px; height: 38px; background-color: #0dcaf0; border: 2px solid #fff;">
+                    <i class="bi bi-person-fill text-white fs-5"></i>
+                </div>
+                <span class="ms-2 d-none d-md-inline text-light">@UserManager.GetUserName(User)</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 bg-dark animate__animated animate__fadeIn" aria-labelledby="profileDropdown">
+                <li class="dropdown-header text-info fw-bold border-bottom border-secondary mb-2">HESAP AYARLARI</li>
+                <li>
+                    <a class="dropdown-item text-light py-2" asp-area="Identity" asp-page="/Account/Manage/Index">
+                        <i class="bi bi-gear-fill me-2 text-secondary"></i> Profilim
+                    </a>
+                </li>
+                <li><hr class="dropdown-divider border-secondary"></li>
+                <li>
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="dropdown-item text-danger py-2">
+                            <i class="bi bi-box-arrow-right me-2"></i> Çıkış Yap
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Kayıt Ol</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-outline-info ms-lg-2 px-3" asp-area="Identity" asp-page="/Account/Login">Giriş Yap</a>
+        </li>
+    }
+</ul>

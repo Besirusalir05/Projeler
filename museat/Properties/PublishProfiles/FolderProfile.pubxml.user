@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- https://go.microsoft.com/fwlink/?LinkID=208121. -->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\Kerem\Desktop\MUSEAT\publish</_PublishTargetUrl>
+    <History>True|2025-12-23T19:46:01.2421176Z||;True|2025-12-23T22:30:47.6651193+03:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=77.245.159.121%3bPort=3306%3bDatabase=museatdb%3bUid=museat%3bPwd=USAlir186.%3bSslMode=None%3bConnect Timeout=60%3bAllowUserVariables=True%3bTreatTinyAsBoolean=true%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

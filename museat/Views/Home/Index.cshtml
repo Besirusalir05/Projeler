@@ -1,0 +1,107 @@
+﻿@model IEnumerable<museat.Models.Beat>
+
+@{
+    ViewData["Title"] = "Müzik Market - Keşfet";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-5 animate__animated animate__fadeIn">
+        <h1 class="display-4 fw-bold" style="color: #00d2ff;">MUSEAT MARKET</h1>
+        <p class="lead text-muted">Prodüktörlerden en iyi beat'ler ve sanatçılardan en yeni şarkılar.</p>
+    </div>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success border-0 shadow-sm animate__animated animate__bounceIn">
+            <i class="bi bi-check-circle-fill me-2"></i> @TempData["Message"]
+        </div>
+    }
+
+    <h3 class="mb-4"><i class="bi bi-fire text-warning"></i> Yeni Yüklenen Beatler</h3>
+    <div class="row mb-5">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="card-title mb-0 text-white">@item.Name</h5>
+                            <span class="badge bg-primary">@item.Genre</span>
+                        </div>
+                        <h6 class="text-info fw-bold mb-3">@item.Price ₺</h6>
+
+                        <div class="bg-dark p-2 rounded mb-3">
+                            <audio controls class="w-100 shadow-none" style="height: 30px;">
+                                <source src="@item.AudioFilePath" type="audio/mpeg">
+                            </audio>
+                        </div>
+
+                        <div class="mt-auto">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                @if (User.IsInRole("Writer"))
+                                {
+                                    <form asp-controller="Collaboration" asp-action="SendRequest" method="post">
+                                        <input type="hidden" name="beatId" value="@item.Id" />
+                                        <button type="submit" class="btn btn-primary w-100">
+                                            <i class="bi bi-hand-thumbs-up"></i> İşbirliği Talebi Gönder
+                                        </button>
+                                    </form>
+                                }
+                                else if (User.IsInRole("Producer"))
+                                {
+                                    <button class="btn btn-outline-secondary disabled w-100">Senin Beat'in</button>
+                                }
+                            }
+                            else
+                            {
+                                <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-outline-info w-100">
+                                    Talep Göndermek İçin Giriş Yap
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <hr class="my-5" style="border-color: #2d2f3b;" />
+    <h3 class="mb-4 text-center"><i class="bi bi-rocket-takeoff text-danger"></i> Yayına Giren Son Şarkılar</h3>
+
+    <div class="row">
+        @if (ViewBag.CompletedProjects != null)
+        {
+            foreach (var project in (IEnumerable<museat.Models.Collaboration>)ViewBag.CompletedProjects)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-lg border-0 bg-dark text-white p-3">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-md-4 text-center">
+                                <i class="bi bi-disc-fill text-danger" style="font-size: 4rem;"></i>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title text-warning">@project.Beat?.Name (Official Version)</h5>
+                                    <p class="card-text small text-muted">
+                                        <i class="bi bi-person-fill"></i> Prod: @project.Beat?.ProducerId.Substring(0, 5)... <br />
+                                        <i class="bi bi-mic-fill"></i> Vocal: @project.WriterId?.Substring(0, 5)...
+                                    </p>
+                                    <audio controls class="w-100 mt-2" style="height: 30px; filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(1);">
+                                        <source src="@project.FinalSongPath" type="audio/mpeg">
+                                    </audio>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12 text-center">
+                <p class="text-muted italic">Henüz tamamlanmış bir şarkı bulunmuyor. İlk şarkıyı sen yap!</p>
+            </div>
+        }
+    </div>
+</div>

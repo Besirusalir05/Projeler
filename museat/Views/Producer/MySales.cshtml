@@ -1,0 +1,66 @@
+﻿@model IEnumerable<museat.Models.Collaboration>
+
+@{
+    ViewData["Title"] = "Satışlarım ve Onay Bekleyenler";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4"><i class="bi bi-person-check"></i> Onay Bekleyen İşbirliği Talepleri</h2>
+    <hr />
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">Henüz bir işbirliği talebi almadınız.</div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover border shadow-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Talep ID</th>
+                        <th>Beat ID</th>
+                        <th>Yazıcı (Alıcı)</th>
+                        <th>Durum</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>#@item.Id</td>
+                            <td>@item.BeatId</td>
+                            <td>@item.WriterId</td> @* İleride buraya kullanıcı adını çekebiliriz *@
+                            <td>
+                                @if (item.IsApproved)
+                                {
+                                    <span class="badge bg-success">Onaylandı</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">Onay Bekliyor</span>
+                                }
+                            </td>
+                            <td>
+                                @if (!item.IsApproved)
+                                {
+                                    <form asp-action="ApproveRequest" method="post">
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <button type="submit" class="btn btn-sm btn-success">
+                                            Kullanıcıyı Onayla
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-sm btn-outline-secondary" disabled>Onay Verildi</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

@@ -1,0 +1,178 @@
+/* Ana Tema Renkleri ve Arka Plan */
+body {
+    background-color: #0f111a; /* Derin Uzay Siyahý */
+    color: #e1e1e1;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Navbar Tasarýmý */
+.navbar {
+    background: rgba(20, 22, 32, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #2d2f3b !important;
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #00d2ff !important; /* Neon Mavi */
+    text-transform: uppercase;
+}
+
+.nav-link {
+    color: #b0b3b8 !important;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+    .nav-link:hover {
+        color: #00d2ff !important;
+    }
+
+/* Beat Kartlarý (Card) */
+.card {
+    background-color: #1a1c26;
+    border: 1px solid #2d2f3b;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2);
+        border-color: #00d2ff;
+    }
+
+.card-title {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Ses Oynatýcý (Audio Player) Customizing */
+audio {
+    filter: invert(100%) hue-rotate(180deg) brightness(1.5);
+    height: 35px;
+    border-radius: 5px;
+}
+
+/* Butonlar */
+.btn-primary {
+    background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+    border: none;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 10px 20px;
+}
+
+    .btn-primary:hover {
+        background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+        box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+    }
+
+.btn-success {
+    background: linear-gradient(45deg, #00b09b, #96c93d);
+    border: none;
+}
+
+/* Tablolar (MySales için) */
+.table {
+    color: #e1e1e1;
+    background-color: #1a1c26;
+    border-radius: 10px;
+}
+
+    .table thead {
+        background-color: #00d2ff;
+        color: #000;
+    }
+
+/* Formlar */
+.form-control, .form-select {
+    background-color: #252836;
+    border: 1px solid #3d4156;
+    color: white;
+}
+
+    .form-control:focus {
+        background-color: #2d303e;
+        color: white;
+        border-color: #00d2ff;
+        box-shadow: 0 0 8px rgba(0, 210, 255, 0.2);
+    }
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #0a0b10 !important;
+    border-top: 2px solid #2d2f3b !important;
+    padding: 30px 0;
+    color: #b0b3b8 !important;
+    margin-bottom:-50%
+}
+
+    /* Footer içindeki linkler ve vurgular */
+    footer a {
+        color: #00d2ff !important;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+        footer a:hover {
+            text-shadow: 0 0 8px rgba(0, 210, 255, 0.6);
+            color: #ffffff !important;
+        }
+
+    footer strong {
+        color: #00d2ff;
+        letter-spacing: 1px;
+    }
+.btn-outline-info {
+    border-width: 2px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+/* Alt taraftaki plak ikonunun rengini neon mavi yapma */
+.text-danger.bi-disc-fill {
+    color: #00d2ff !important;
+    filter: drop-shadow(0 0 5px rgba(0, 210, 255, 0.5));
+}
+/* Profil Daire Tasarýmý */
+.profile-circle {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+    transition: 0.3s;
+}
+
+.nav-item:hover .profile-circle {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+}
+
+/* Dropdown Menü Ýyileþtirmeleri */
+.dropdown-item {
+    transition: 0.2s;
+    padding: 10px 20px;
+}
+
+    .dropdown-item:hover {
+        background-color: #2d2f3b !important;
+        color: #00d2ff !important;
+    }
+
+.dropdown-header {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
